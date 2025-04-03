@@ -16,6 +16,7 @@ class CoinListViewModel {
         self.coinRepository = coinRepository
     }
     
+    @MainActor
     func fetchCoin() async throws {
         do {
             let fetchedCoins: [CoinModel] = try await coinRepository.fetchCoins()

@@ -46,7 +46,7 @@ struct CoinModel: Codable, Identifiable {
     let lastUpdated: String?
     let sparklineIn7D: SparklineIn7D?
     let priceChangePercentage1HInCurrency: Double?
-    
+
     enum CodingKeys: String, CodingKey {
         case id, symbol, name, image
         case currentPrice = "current_price"
@@ -73,11 +73,9 @@ struct CoinModel: Codable, Identifiable {
         case sparklineIn7D = "sparkline_in_7d"
         case priceChangePercentage1HInCurrency = "price_change_percentage_1h_in_currency"
     }
-    
-    static let example = CoinModel(id: "asd", symbol: "asd", name: "asd", image: nil, currentPrice: 1233.2, marketCap: 1233.1, marketCapRank: 123311, fullyDilutedValuation: 123.1, totalVolume: 21441, high24H: 1233.1, low24H: 1232.2, priceChange24H: 123.3, priceChangePercentage24H: 1233.2, marketCapChange24H: 1233.1, marketCapChangePercentage24H: 2131.1, circulatingSupply: 2131, totalSupply: 1233.1, maxSupply: 1233.1, ath: 3231.2, athChangePercentage: 312321.1, athDate: nil, atl: 123.1, atlChangePercentage: 1232.1, atlDate: "Aedas", lastUpdated: "qweqw", sparklineIn7D: nil, priceChangePercentage1HInCurrency: 123.1)
 }
 
+// MARK: - SparklineIn7D
 struct SparklineIn7D: Codable {
     let price: [Double]?
 }
-
