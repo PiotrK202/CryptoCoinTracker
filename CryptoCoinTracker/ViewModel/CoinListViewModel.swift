@@ -16,7 +16,7 @@ class CoinListViewModel {
         self.coinRepository = coinRepository
     }
     
-    @MainActor
+    
     func fetchCoin() async throws {
         do {
             let fetchedCoins: [CoinModel] = try await coinRepository.fetchCoins()
@@ -25,5 +25,20 @@ class CoinListViewModel {
             print(error.localizedDescription)
         }
     }
+        func fetchCoins() async throws {
+            do {
+                coins = try await coinRepository.fetchCoins()
+                print(coins.count)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    
+//    func image(for coin: CoinModel) -> URL? {
+//        let image = coin.image ?? ""
+//        guard let url = URL(string: image) else { return nil }
+//        return url
+//    }
+//    
 }
 

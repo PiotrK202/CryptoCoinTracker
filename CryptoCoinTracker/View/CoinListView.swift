@@ -11,6 +11,7 @@ import SwiftUI
 struct CoinListView: View {
     
     @State private var viewModel: CoinListViewModel
+    @State private var isShowingAlert = false
     
     init(viewModel: CoinListViewModel) {
         self.viewModel = viewModel
@@ -20,17 +21,35 @@ struct CoinListView: View {
         NavigationStack {
             List {
                 ForEach(viewModel.coins) { coin in
-                    NavigationLink(destination: Text("hello")) {
-                        Text(coin.name)
+                    AsyncImage(url: URL(string: coin.image ?? "" )) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        } else if phase.error != nil {
+                            Text("Rip")
+                        } else {
+                           ProgressView()
+                        }
+                    }
+                    HStack {
+                        VStack {
+                            Text(coin.name)
+                                .font(.headline)
+                        }
                     }
                 }
             }
             .onAppear {
                 Task {
-                    try await viewModel.fetchCoin()
+                    try await viewModel.fetchCoins()
                 }
             }
+            .alert("error", isPresented: $isShowingAlert, actions: {
+                Text("something Went Wrong")
+            })
             .navigationTitle("Coins")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
@@ -38,3 +57,4 @@ struct CoinListView: View {
 #Preview {
     CoinListView(viewModel: CoinListViewModel(coinRepository: Repository(dataService: DataService())))
 }
+

@@ -21,8 +21,14 @@ struct Repository {
         return try await dataService.fetchData(from: url)
     }
     
-    func callEndpoint1(model: CoinModel) async throws -> CoinModel? {
-        guard let request = DataService.returnEndpoint(endpoint: .endpoint1(model)) else { return nil }
-        return try await dataService.fetchData2(from: request)
+    func fetchCoins2() async throws -> [CoinModel] {
+        return try await  dataService.fetchCoins()
     }
 }
+
+/*
+ func callEndpoint1(model: CoinModel) async throws -> CoinModel? {
+     guard let request = DataService.returnEndpoint(endpoint: .endpoint1(model)) else { return nil }
+     return try await dataService.fetchData2(from: request)
+ }
+ */

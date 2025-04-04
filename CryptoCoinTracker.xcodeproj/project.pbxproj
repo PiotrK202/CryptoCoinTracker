@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DF2ED0052D9FBA6100EA60C2 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2ED0042D9FBA6100EA60C2 /* File.swift */; };
+		DF2ED01F2D9FBD1B00EA60C2 /* CryptoCoinTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2ED0132D9FBD1B00EA60C2 /* CryptoCoinTrackerApp.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		DF29653F2D9EAC5600B52AA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +32,8 @@
 		DF2965312D9EAC5400B52AA0 /* CryptoCoinTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoCoinTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF29653E2D9EAC5600B52AA0 /* CryptoCoinTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoCoinTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2965482D9EAC5600B52AA0 /* CryptoCoinTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoCoinTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF2ED0042D9FBA6100EA60C2 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		DF2ED0132D9FBD1B00EA60C2 /* CryptoCoinTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCoinTrackerApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -34,12 +41,13 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				CryptoCoinTrackerApp.swift,
 				DataService/CoinDataService.swift,
 				DataService/NetworkLayer.swift,
 				DataService/Repositories.swift,
 				Model/CoinModel.swift,
+				View/CoinDetialView.swift,
 				View/CoinListView.swift,
+				ViewModel/CoinDetailViewModel.swift,
 				ViewModel/CoinListViewModel.swift,
 			);
 			target = DF2965302D9EAC5400B52AA0 /* CryptoCoinTracker */;
@@ -48,7 +56,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				CryptoCoinTrackerApp.swift,
+				View/CoinDetialView.swift,
 				View/CoinListView.swift,
 			);
 			target = DF2965472D9EAC5600B52AA0 /* CryptoCoinTrackerUITests */;
@@ -105,6 +113,8 @@
 		DF2965282D9EAC5400B52AA0 = {
 			isa = PBXGroup;
 			children = (
+				DF2ED0132D9FBD1B00EA60C2 /* CryptoCoinTrackerApp.swift */,
+				DF2ED0042D9FBA6100EA60C2 /* File.swift */,
 				DF2965832D9EACFE00B52AA0 /* CryptoCoinTracker */,
 				DF2965412D9EAC5600B52AA0 /* CryptoCoinTrackerTests */,
 				DF29654B2D9EAC5600B52AA0 /* CryptoCoinTrackerUITests */,
@@ -264,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF2ED01F2D9FBD1B00EA60C2 /* CryptoCoinTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF2ED0052D9FBA6100EA60C2 /* File.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +442,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -457,6 +470,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
