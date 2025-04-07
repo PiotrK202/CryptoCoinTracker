@@ -12,7 +12,7 @@ import SwiftUI
 class CoinListViewModel {
     private let coinRepository: RepositoriesProtocol
     var coins = [CoinModel]()
-    var path: [NvaigationRoute] = []
+    var path: [NavigationRoute] = []
     
     init(coinRepository: RepositoriesProtocol) {
         self.coinRepository = coinRepository
@@ -30,7 +30,7 @@ class CoinListViewModel {
 }
 
 
-enum NvaigationRoute: Hashable {
+enum NavigationRoute: Hashable {
     case login
     case profile
     case coinDetail(CoinModel)

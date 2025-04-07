@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @State private var userName = ""
+    @State private var email = ""
+    @State private var birthYear = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            Section(header: Text("User info")) {
+                Text("UserName: \(userName)")
+                    .padding()
+                
+                Text("Email: \(email)")
+                    .padding()
+                
+                Text("Your Birth Year: \(birthYear)")
+                
+            }
+        }
+        .onAppear {
+            loadUserInfo()
+        }
+    }
+    
+    func loadUserInfo() {
+        userName = KeychainHelper.shared.read(forKey: "userName") ?? "Not Available"
+        email = KeychainHelper.shared.read(forKey: "userEmail") ?? "Not Available"
+        birthYear = KeychainHelper.shared.read(forKey: "userBirthYear") ?? "Not Available"
     }
 }
 

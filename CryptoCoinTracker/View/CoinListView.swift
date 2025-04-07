@@ -23,37 +23,37 @@ struct CoinListView: View {
         NavigationStack(path: $viewModel.path) {
             List {
                 ForEach(viewModel.coins) { coin in
-                    VStack {
+                    Button {
+                        viewModel.path.append(NavigationRoute.coinDetail(coin))
+                    } label: {
                         HStack(spacing:20) {
-                            Button {
-                                viewModel.path.append(NvaigationRoute.coinDetail(coin))
-                                
-                            } label: {
-                                AsyncImage(url: URL(string: coin.image ?? "" )) { phase in
-                                    if let image = phase.image {
-                                        image
-                                            .resizable()
-                                            .frame(width: 30, height: 30)
-                                    } else if phase.error != nil {
-                                        ImageDownloadErrorView()
-                                    } else {
-                                        ProgressView()
-                                    }
+                            AsyncImage(url: URL(string: coin.image ?? "" )) { phase in
+                                if let image = phase.image {
+                                    image
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                } else if phase.error != nil {
+                                    ImageDownloadErrorView()
+                                } else {
+                                    ProgressView()
                                 }
-                                
-                                Text(coin.name)
-                                    .font(.headline)
-                                Spacer()
-                                
-                                Text("\(coin.formattedPrice) $")
-                                    .font(.subheadline)
-                                
                             }
-                            .buttonStyle(PlainButtonStyle())
+                            
+                            Text(coin.name)
+                                .font(.headline)
+                            ZStack {
+                                Color.gray.opacity(0.001)
+                                Spacer()
+                            }
+                            Text("\(coin.formattedPrice) $")
+                                .font(.subheadline)
+                            
                         }
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
+            
             .onAppear {
                 Task {
                     try await viewModel.fetchCoin()
@@ -68,10 +68,10 @@ struct CoinListView: View {
                     }
                 }
             }
-            .navigationDestination(for:NvaigationRoute.self) { route in
+            .navigationDestination(for:NavigationRoute.self) { route in
                 switch route {
                 case .login:
-                    LoginView()
+                    LoginView(isLoggedIn: $isLoggedIn)
                 case .profile:
                     ProfileView()
                 case .coinDetail(let coin):
@@ -81,6 +81,7 @@ struct CoinListView: View {
         }
     }
 }
+
 #Preview {
     CoinListView(viewModel: CoinListViewModel(coinRepository: Repository(dataService: DataService())))
 }

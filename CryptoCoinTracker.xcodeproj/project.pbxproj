@@ -30,7 +30,6 @@
 /* Begin PBXFileReference section */
 		DF1473C52DA3B3910020F199 /* CoinListViewModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinListViewModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2965312D9EAC5400B52AA0 /* CryptoCoinTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoCoinTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF2ED0042D9FBA6100EA60C2 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		DF2ED0132D9FBD1B00EA60C2 /* CryptoCoinTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCoinTrackerApp.swift; sourceTree = "<group>"; };
 		DF9E6DCB2DA0273700EA0776 /* CryptoCoinTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoCoinTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -54,6 +53,7 @@
 				View/ProfileView.swift,
 				ViewModel/CoinDetailViewModel.swift,
 				ViewModel/CoinListViewModel.swift,
+				ViewModel/KeychainHelper.swift,
 			);
 			target = DF2965302D9EAC5400B52AA0 /* CryptoCoinTracker */;
 		};
@@ -104,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				DF2ED0132D9FBD1B00EA60C2 /* CryptoCoinTrackerApp.swift */,
-				DF2ED0042D9FBA6100EA60C2 /* File.swift */,
 				DF2965832D9EACFE00B52AA0 /* CryptoCoinTracker */,
 				DF9E6DCC2DA0273700EA0776 /* CryptoCoinTrackerTests */,
 				DF2965322D9EAC5400B52AA0 /* Products */,
