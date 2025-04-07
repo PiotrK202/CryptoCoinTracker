@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct DataService {
+protocol DataServiceProtocol {
+    func fetchData<T: Decodable>(from urlString: String) async throws -> T
+    
+}
+
+struct DataService: DataServiceProtocol {
     
     func fetchData<T: Decodable>(from urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else {
@@ -24,21 +29,6 @@ struct DataService {
         }
     }
     
-    func fetchCoins() async throws -> [CoinModel] {
-        let url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
-        guard let urlString = URL(string: url) else {
-            throw URLError(.badURL)
-        }
-        let (data,response) = try await URLSession.shared.data(from: urlString)
-        try httpResponse(response: response)
-        let decoder = JSONDecoder()
-        let coinsData = try decoder.decode([CoinModel].self, from: data)
-        print(coinsData.count)
-        return coinsData
-    }
-    
-
-    
     private func httpResponse(response: URLResponse ) throws {
         guard let httpResponse = response as? HTTPURLResponse,
               (200..<300).contains(httpResponse.statusCode) else {
@@ -48,7 +38,22 @@ struct DataService {
 }
 
 
+
 /*
+ 
+ func fetchCoins() async throws -> [CoinModel] {
+     let url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+     guard let urlString = URL(string: url) else {
+         throw URLError(.badURL)
+     }
+     let (data,response) = try await URLSession.shared.data(from: urlString)
+     try httpResponse(response: response)
+     let decoder = JSONDecoder()
+     let coinsData = try decoder.decode([CoinModel].self, from: data)
+     print(coinsData.count)
+     return coinsData
+ }
+ 
  static func returnEndpoint(endpoint: Endpoints) -> URLRequest? {
      guard let url = URL(string: endpoint.patch) else {
          return nil

@@ -9,10 +9,10 @@ import Foundation
 
 @Observable
 class CoinListViewModel {
-    private let coinRepository: Repository
+    private let coinRepository: RepositoriesProtocol
     var coins = [CoinModel]()
     
-    init(coinRepository: Repository) {
+    init(coinRepository: RepositoriesProtocol) {
         self.coinRepository = coinRepository
     }
     
@@ -25,20 +25,25 @@ class CoinListViewModel {
             print(error.localizedDescription)
         }
     }
-        func fetchCoins() async throws {
-            do {
-                coins = try await coinRepository.fetchCoins()
-                print(coins.count)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    
-//    func image(for coin: CoinModel) -> URL? {
-//        let image = coin.image ?? ""
-//        guard let url = URL(string: image) else { return nil }
-//        return url
-//    }
-//    
 }
 
+
+
+/*
+ func fetchCoins() async throws {
+     do {
+         coins = try await coinRepository.fetchCoins()
+         print(coins.count)
+     } catch {
+         print(error.localizedDescription)
+     }
+ }
+ 
+ 
+ //    func image(for coin: CoinModel) -> URL? {
+ //        let image = coin.image ?? ""
+ //        guard let url = URL(string: image) else { return nil }
+ //        return url
+ //    }
+ //
+ */
