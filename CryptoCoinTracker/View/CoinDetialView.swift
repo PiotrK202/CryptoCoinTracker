@@ -54,7 +54,11 @@ struct CoinDetialView: View {
         }
         .navigationTitle("Details")
         .sheet(isPresented: $isShowingSheet) {
-            
+            if let priceData = viewModel.coin.sparklineIn7D?.price {
+                ChartSparklineIn7DView(price: priceData)
+            } else {
+                Text("no price Data available")
+            }
         }
     }
 }
