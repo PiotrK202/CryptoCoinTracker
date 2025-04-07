@@ -20,7 +20,11 @@
 
 import Foundation
 
-struct CoinModel: Codable, Identifiable {
+struct CoinModel: Codable, Identifiable, Hashable {
+    static func == (lhs: CoinModel, rhs: CoinModel) -> Bool {
+        true
+    }
+    
     let id, symbol, name: String
     let image: String?
     let currentPrice: Double
@@ -73,10 +77,15 @@ struct CoinModel: Codable, Identifiable {
         case sparklineIn7D = "sparkline_in_7d"
         case priceChangePercentage1HInCurrency = "price_change_percentage_1h_in_currency"
     }
+    var formattedPrice: String {
+        let formatedPrice = currentPrice
+        return formatedPrice.description.replacingOccurrences(of: ".0", with: "")
+    }
+    
     static let example = CoinModel(id: "sdad", symbol: "asdad", name: "asd", image: nil, currentPrice: 123.2, marketCap: nil, marketCapRank: nil, fullyDilutedValuation: nil, totalVolume: nil, high24H: nil, low24H: nil, priceChange24H: nil, priceChangePercentage24H: nil, marketCapChange24H: nil, marketCapChangePercentage24H: nil, circulatingSupply: nil, totalSupply: nil, maxSupply: nil, ath: nil, athChangePercentage: nil, athDate: nil, atl: nil, atlChangePercentage: nil, atlDate: nil, lastUpdated: nil, sparklineIn7D: nil, priceChangePercentage1HInCurrency: nil)
 }
 
 // MARK: - SparklineIn7D
-struct SparklineIn7D: Codable {
+struct SparklineIn7D: Codable,Hashable {
     let price: [Double]?
 }

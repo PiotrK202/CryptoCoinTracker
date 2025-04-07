@@ -20,12 +20,15 @@ struct CoinListView: View {
     }
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $viewModel.path) {
             List {
                 ForEach(viewModel.coins) { coin in
                     VStack {
                         HStack(spacing:20) {
-                            NavigationLink(destination: CoinDetialView(viewModel: CoinDetailViewModel(coin: coin))) {
+                            Button {
+                                viewModel.path.append(NvaigationRoute.coinDetail(coin))
+                                
+                            } label: {
                                 AsyncImage(url: URL(string: coin.image ?? "" )) { phase in
                                     if let image = phase.image {
                                         image
@@ -37,13 +40,15 @@ struct CoinListView: View {
                                         ProgressView()
                                     }
                                 }
-                                VStack {
-                                    Text(coin.name)
-                                        .font(.headline)
-                                    
-                                    Text("\(coin.currentPrice) $")
-                                }
+                                
+                                Text(coin.name)
+                                    .font(.headline)
+                                Spacer()
+                                
+                                Text("\(coin.formattedPrice) $")
+                                
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                 }
@@ -57,21 +62,24 @@ struct CoinListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    VStack {
-                        Button(isLoggedIn ? "Profile" : "Login") {
-                            if isLoggedIn {
-                                showProfile = true
-                            } else {
-                                showLogin = true
-                            }
-                        }
+                    Button(isLoggedIn ? "Profile" : "Login") {
+                        viewModel.path.append(isLoggedIn ? .profile : .login)
                     }
+                }
+            }
+            .navigationDestination(for:NvaigationRoute.self) { route in
+                switch route {
+                case .login:
+                    LoginView()
+                case .profile:
+                    ProfileView()
+                case .coinDetail(let coin):
+                    CoinDetialView(viewModel: CoinDetailViewModel(coin: coin))
                 }
             }
         }
     }
 }
-
 #Preview {
     CoinListView(viewModel: CoinListViewModel(coinRepository: Repository(dataService: DataService())))
 }
