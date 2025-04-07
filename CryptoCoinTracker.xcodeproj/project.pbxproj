@@ -48,7 +48,7 @@
 				Model/CoinModel.swift,
 				View/CoinDetialView.swift,
 				View/CoinListView.swift,
-				View/ErrorView.swift,
+				View/ImageDownloadErrorView.swift,
 				View/LoginView.swift,
 				View/ProfileView.swift,
 				ViewModel/CoinDetailViewModel.swift,

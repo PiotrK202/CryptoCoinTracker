@@ -35,7 +35,7 @@ struct CoinListView: View {
                                             .resizable()
                                             .frame(width: 30, height: 30)
                                     } else if phase.error != nil {
-                                        ErrorView(viewModel: viewModel)
+                                        ImageDownloadErrorView()
                                     } else {
                                         ProgressView()
                                     }
@@ -46,6 +46,7 @@ struct CoinListView: View {
                                 Spacer()
                                 
                                 Text("\(coin.formattedPrice) $")
+                                    .font(.subheadline)
                                 
                             }
                             .buttonStyle(PlainButtonStyle())

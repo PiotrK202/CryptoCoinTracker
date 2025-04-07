@@ -22,7 +22,7 @@ import Foundation
 
 struct CoinModel: Codable, Identifiable, Hashable {
     static func == (lhs: CoinModel, rhs: CoinModel) -> Bool {
-        true
+        lhs.id == rhs.id
     }
     
     let id, symbol, name: String
