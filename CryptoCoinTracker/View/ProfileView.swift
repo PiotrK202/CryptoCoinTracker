@@ -68,12 +68,7 @@ struct ProfileView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(role: .destructive) {
-                    KeychainHelper.shared.deletUser()
-                    do {
-                        try modelContext.delete(model: FavoriteCoinModel.self)
-                    } catch {
-                        print("failed to delete")
-                    }
+                    viewModel.deletCoins(modelContext)
                     isLoggedIn = false
                     dismiss()
                 } label: {

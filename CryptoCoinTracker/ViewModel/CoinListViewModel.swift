@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 
 enum NavigationRoute: Hashable {
-    case login
+    case signUp
     case profile
     case coinDetail(CoinModel)
+    case login
 }
 
 @Observable

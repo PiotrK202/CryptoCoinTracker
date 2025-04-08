@@ -53,12 +53,14 @@
 				View/LoginView.swift,
 				View/ProfileView.swift,
 				View/SheetViewForAddingCoin.swift,
+				View/SignUpView.swift,
 				ViewModel/CoinDetailViewModel.swift,
 				ViewModel/CoinListViewModel.swift,
 				ViewModel/KeychainHelper.swift,
 				ViewModel/LoginViewModel.swift,
 				ViewModel/ProfileViewModel.swift,
 				ViewModel/SheetViewModelForAddingCoins.swift,
+				ViewModel/SignUpViewModel.swift,
 			);
 			target = DF2965302D9EAC5400B52AA0 /* CryptoCoinTracker */;
 		};
