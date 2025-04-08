@@ -9,10 +9,11 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var viewModel = LoginViewModel()
     @State private var username = ""
     @State private var email = ""
     @State private var password = ""
-    @State private var birthYear = ""
+    @State private var birthYear: Int = 2025
     @State private var errorMessage: String?
     @Binding var isLoggedIn: Bool
     
@@ -27,19 +28,18 @@ struct LoginView: View {
                 
                 SecureField("Password",text: $password)
                 
-                TextField("Your Year Of Birth",text: $birthYear)
+                TextField("Your year of birth", value: $birthYear, formatter: NumberFormatter())
                     .keyboardType(.numberPad)
+                
                 if let error = errorMessage {
                     Text(error)
                         .foregroundStyle(.red)
                 }
             }
+            
             Button("Sign Up") {
-                if isValidEmail(email) {
-                    KeychainHelper.shared.save(token: username, forKey: "userName")
-                    KeychainHelper.shared.save(token: email, forKey: "userEmail")
-                    KeychainHelper.shared.save(token: password, forKey: "userPassword")
-                    KeychainHelper.shared.save(token: birthYear, forKey: "userBirthYear")
+                if viewModel.isValidEmail(email) && viewModel.isYourYearOfBirthValid(birthYear) {
+                    viewModel.saveUserData(username, email, password, birthYear)
                     isLoggedIn = true
                     errorMessage = nil
                     dismiss()
@@ -47,12 +47,7 @@ struct LoginView: View {
                     errorMessage = "Invalid email format".uppercased()
                 }
             }
-            
         }
-    }
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
     }
 }
 

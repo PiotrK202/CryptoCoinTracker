@@ -31,9 +31,9 @@ struct ProfileView: View {
     }
     
     func loadUserInfo() {
-        userName = KeychainHelper.shared.read(forKey: "userName") ?? "Not Available"
-        email = KeychainHelper.shared.read(forKey: "userEmail") ?? "Not Available"
-        birthYear = KeychainHelper.shared.read(forKey: "userBirthYear") ?? "Not Available"
+        userName = KeychainHelper.shared.read(forKey: KeychainHelper.userName) ?? "Not Available"
+        email = KeychainHelper.shared.read(forKey: KeychainHelper.email) ?? "Not Available"
+        birthYear = KeychainHelper.shared.read(forKey: KeychainHelper.birthYear) ?? "Not Available"
     }
 }
 

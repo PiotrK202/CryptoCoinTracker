@@ -8,8 +8,12 @@
 import Foundation
 import Security
 
-class KeychainHelper {
+final class KeychainHelper {
     static let shared = KeychainHelper()
+    static let userName = "userName"
+    static let email = "email"
+    static let password = "password"
+    static let birthYear = "birthYear"
     
     func save(token: String, forKey key: String) {
         if let data = token.data(using: .utf8) {
@@ -25,7 +29,7 @@ class KeychainHelper {
     }
     
     func read(forKey key: String) -> String? {
-       
+        
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
@@ -35,7 +39,7 @@ class KeychainHelper {
         var item: AnyObject?
         SecItemCopyMatching(query as CFDictionary, &item)
         
-    
+        
         if let data = item as? Data, let string = String(data: data, encoding: .utf8) {
             return string
         }

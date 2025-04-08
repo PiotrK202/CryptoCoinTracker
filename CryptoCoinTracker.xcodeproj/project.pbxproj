@@ -54,6 +54,8 @@
 				ViewModel/CoinDetailViewModel.swift,
 				ViewModel/CoinListViewModel.swift,
 				ViewModel/KeychainHelper.swift,
+				ViewModel/LoginViewModel.swift,
+				ViewModel/ProfileViewModel.swift,
 			);
 			target = DF2965302D9EAC5400B52AA0 /* CryptoCoinTracker */;
 		};

@@ -33,7 +33,7 @@ struct ChartSparklineIn7DView: View {
                     Image(systemName:"xmark")
                         .onTapGesture {
                             dissmiss()
-                        }
+                    }
                 }
             }
         }
