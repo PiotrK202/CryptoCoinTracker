@@ -46,6 +46,18 @@ final class KeychainHelper {
         return nil
     }
     
+    private func delet(forKey key: String) {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key
+        ]
+        SecItemDelete(query as CFDictionary)
+    }
     
-    
+    func deletUser() {
+        let keys = [KeychainHelper.birthYear, KeychainHelper.email, KeychainHelper.password, KeychainHelper.userName]
+        for key in keys {
+            delet(forKey: key)
+        }
+    }
 }
