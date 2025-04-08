@@ -8,8 +8,14 @@
 import Foundation
 import SwiftUI
 
+enum NavigationRoute: Hashable {
+    case login
+    case profile
+    case coinDetail(CoinModel)
+}
+
 @Observable
-class CoinListViewModel {
+final class CoinListViewModel {
     private let coinRepository: RepositoriesProtocol
     var coins = [CoinModel]()
     var path: [NavigationRoute] = []
@@ -17,7 +23,6 @@ class CoinListViewModel {
     init(coinRepository: RepositoriesProtocol) {
         self.coinRepository = coinRepository
     }
-    
     
     func fetchCoin() async throws {
         do {
@@ -28,14 +33,6 @@ class CoinListViewModel {
         }
     }
 }
-
-
-enum NavigationRoute: Hashable {
-    case login
-    case profile
-    case coinDetail(CoinModel)
-}
-
 
 /*
  func fetchCoins() async throws {

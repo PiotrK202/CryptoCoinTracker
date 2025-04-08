@@ -8,12 +8,10 @@
 import Foundation
 
 @Observable
-class CoinDetailViewModel {
-    
+final class CoinDetailViewModel {
     var coin: CoinModel
     
     init(coin: CoinModel) {
         self.coin = coin
     }
-    
 }

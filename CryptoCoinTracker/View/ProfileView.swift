@@ -8,32 +8,21 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var userName = ""
-    @State private var email = ""
-    @State private var birthYear = ""
-    
+    @State private var viewModel = ProfileViewModel()
+    private let noAvailableText = "Not available"
     var body: some View {
         Form {
             Section(header: Text("User info")) {
-                Text("UserName: \(userName)")
+                Text("UserName: \(viewModel.userName ?? noAvailableText)")
                     .padding()
                 
-                Text("Email: \(email)")
+                Text("Email: \(viewModel.email ?? noAvailableText)")
                     .padding()
                 
-                Text("Your Birth Year: \(birthYear)")
+                Text("Your Birth Year: \(viewModel.birthYear ?? noAvailableText)")
                 
             }
         }
-        .onAppear {
-            loadUserInfo()
-        }
-    }
-    
-    func loadUserInfo() {
-        userName = KeychainHelper.shared.read(forKey: KeychainHelper.userName) ?? "Not Available"
-        email = KeychainHelper.shared.read(forKey: KeychainHelper.email) ?? "Not Available"
-        birthYear = KeychainHelper.shared.read(forKey: KeychainHelper.birthYear) ?? "Not Available"
     }
 }
 
