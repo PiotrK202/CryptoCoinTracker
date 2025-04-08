@@ -38,13 +38,13 @@ struct LoginView: View {
             }
             
             Button("Sign Up") {
-                if viewModel.isValidEmail(email) && viewModel.isYourYearOfBirthValid(birthYear) {
+                if let error = viewModel.validateUser(username, email, password, birthYear) {
+                    errorMessage = error.uppercased()
+                } else {
                     viewModel.saveUserData(username, email, password, birthYear)
                     isLoggedIn = true
                     errorMessage = nil
                     dismiss()
-                } else {
-                    errorMessage = "Invalid email format".uppercased()
                 }
             }
         }
