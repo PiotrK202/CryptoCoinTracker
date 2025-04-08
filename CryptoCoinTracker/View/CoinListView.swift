@@ -14,6 +14,17 @@ struct CoinListView: View {
     @State private var isLoggedIn = false
     @State private var showProfile = false
     @State private var showLogin = false
+    @State private var searchForCoins = ""
+    
+    private var filtredCoins: [CoinModel] {
+        if searchForCoins.isEmpty {
+            return viewModel.coins
+        } else {
+            return viewModel.coins.filter { coin in
+                coin.name.localizedStandardContains(searchForCoins)
+            }
+        }
+    }
     
     init(viewModel: CoinListViewModel) {
         _viewModel = State(wrappedValue: viewModel)
@@ -22,7 +33,7 @@ struct CoinListView: View {
     var body: some View {
         NavigationStack(path: $viewModel.path) {
             List {
-                ForEach(viewModel.coins) { coin in
+                ForEach(filtredCoins) { coin in
                     Button {
                         viewModel.path.append(NavigationRoute.coinDetail(coin))
                     } label: {
@@ -53,7 +64,7 @@ struct CoinListView: View {
                     .buttonStyle(PlainButtonStyle())
                 }
             }
-            
+            .searchable(text: $searchForCoins, prompt: "search coin")
             .onAppear {
                 Task {
                     try await viewModel.fetchCoin()
