@@ -4,7 +4,7 @@
 //
 //  Created by piotr koscielny on 3/4/25.
 //
-
+import SwiftData
 import SwiftUI
 
 @main
@@ -13,5 +13,6 @@ struct CryptoCoinTrackerApp: App {
         WindowGroup {
             CoinListView(viewModel: CoinListViewModel(coinRepository: Repository(dataService: DataService())))
         }
+        .modelContainer(for: FavoriteCoinModel.self)
     }
 }
