@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var viewModel = ProfileViewModel()
+    @State private var isShowingSheet = false
     @Binding var isLoggedIn: Bool
     private let noAvailableText = "Not available"
     var body: some View {
@@ -23,7 +24,21 @@ struct ProfileView: View {
                 
                 Text("Your Birth Year: \(viewModel.birthYear ?? noAvailableText)")
             }
+            Section("Your coins") {
+                Button {
+                    isShowingSheet.toggle()
+                } label: {
+                    Text("Add Coin To Observe")
+                        .frame(height: 40)
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.white)
+                        .background(Color.primary)
+                }
+            }
         }
+        .sheet(isPresented: $isShowingSheet, content: {
+            SheetViewForAddingCoin()
+        })
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(role: .destructive) {
