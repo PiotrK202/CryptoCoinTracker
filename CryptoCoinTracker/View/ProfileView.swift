@@ -4,15 +4,22 @@
 //
 //  Created by piotr koscielny on 7/4/25.
 //
-
+import SwiftData
 import SwiftUI
 
 struct ProfileView: View {
+    
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
+    
+    @Query private var favoriteCoins: [FavoriteCoinModel]
+    
     @State private var viewModel = ProfileViewModel()
     @State private var isShowingSheet = false
     @Binding var isLoggedIn: Bool
+    
     private let noAvailableText = "Not available"
+    
     var body: some View {
         Form {
             Section(header: Text("User info")) {
@@ -25,6 +32,13 @@ struct ProfileView: View {
                 Text("Your Birth Year: \(viewModel.birthYear ?? noAvailableText)")
             }
             Section("Your coins") {
+                ForEach(favoriteCoins, id: \.self) { coin in
+                    VStack {
+                        Text(coin.name)
+                        
+                        Text("\(String(describing: coin.currentPrice ?? 0.0))")
+                    }
+                }
                 Button {
                     isShowingSheet.toggle()
                 } label: {
@@ -37,7 +51,12 @@ struct ProfileView: View {
             }
         }
         .sheet(isPresented: $isShowingSheet, content: {
-            SheetViewForAddingCoin()
+            SheetViewForAddingCoin(viewModel: SheetViewModelForAddingCoinsc(coinRepository: Repository(dataService: DataService())))
+            {  selectedCoin in
+                let newCoin = FavoriteCoinModel(name: selectedCoin.name, currentPrice: selectedCoin.currentPrice)
+                modelContext.insert(newCoin)
+                try? modelContext.save()
+            }
         })
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

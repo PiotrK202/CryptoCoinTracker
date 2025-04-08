@@ -12,8 +12,10 @@ import SwiftData
 @Model
 class FavoriteCoinModel {
     var name: String
+    var currentPrice: Double?
     
-    init(name: String) {
+    init(name: String, currentPrice: Double?) {
         self.name = name
+        self.currentPrice = currentPrice
     }
 }
