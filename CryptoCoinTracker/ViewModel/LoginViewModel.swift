@@ -16,10 +16,15 @@ final class LoginViewModel {
     }
 
     func isYourYearOfBirthValid(_ birthYear: Int) -> Bool {
-         if birthYear == 4 && (1900...2025).contains(birthYear) {
-             return false
-         }
-        return true
+        (1900...2025).contains(birthYear)
+    }
+    
+    func isUserNameValid(_ userName: String) -> Bool {
+         userName.count >= 4
+    }
+    
+    func isPasswordValid(_ password: String) -> Bool {
+        password.count >= 8
     }
     
     func saveUserData(_ username: String, _ email: String, _ password: String, _ birthYear: Int) {
