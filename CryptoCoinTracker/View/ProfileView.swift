@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @Environment(\.dismiss) private var dismiss
     @State private var viewModel = ProfileViewModel()
+    @Binding var isLoggedIn: Bool
     private let noAvailableText = "Not available"
     var body: some View {
         Form {
@@ -20,12 +22,23 @@ struct ProfileView: View {
                     .padding()
                 
                 Text("Your Birth Year: \(viewModel.birthYear ?? noAvailableText)")
-                
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(role: .destructive) {
+                    KeychainHelper.shared.deletUser()
+                    isLoggedIn = false
+                    dismiss()
+                } label: {
+                    Text("Log Out")
+                        .padding()
+                }
             }
         }
     }
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(isLoggedIn: .constant(true))
 }
