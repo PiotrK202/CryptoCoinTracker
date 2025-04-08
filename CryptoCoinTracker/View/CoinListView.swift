@@ -68,6 +68,7 @@ struct CoinListView: View {
             .onAppear {
                 Task {
                     try await viewModel.fetchCoin()
+                    isLoggedIn = viewModel.isUserLoggedIn()
                 }
             }
             .navigationTitle("Coins")

@@ -32,6 +32,12 @@ final class CoinListViewModel {
             print(error.localizedDescription)
         }
     }
+    func isUserLoggedIn() -> Bool {
+        let userName = KeychainHelper.shared.read(forKey: KeychainHelper.userName)
+        let email = KeychainHelper.shared.read(forKey: KeychainHelper.email)
+        let password = KeychainHelper.shared.read(forKey: KeychainHelper.password)
+        return !(userName?.isEmpty ?? true) && !(email?.isEmpty ?? true) && !(password?.isEmpty ?? true)
+    }
 }
 
 /*
