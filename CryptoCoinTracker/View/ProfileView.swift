@@ -39,6 +39,13 @@ struct ProfileView: View {
                         Text("\(String(describing: coin.currentPrice ?? 0.0))")
                     }
                 }
+                .onDelete { IndexSet in
+                    for index in IndexSet {
+                        let coinDelete = favoriteCoins[index]
+                        modelContext.delete(coinDelete)
+                    }
+                    try? modelContext.save()
+                }
                 Button {
                     isShowingSheet.toggle()
                 } label: {
@@ -62,6 +69,11 @@ struct ProfileView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(role: .destructive) {
                     KeychainHelper.shared.deletUser()
+                    do {
+                        try modelContext.delete(model: FavoriteCoinModel.self)
+                    } catch {
+                        print("failed to delete")
+                    }
                     isLoggedIn = false
                     dismiss()
                 } label: {
