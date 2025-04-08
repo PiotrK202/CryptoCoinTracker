@@ -85,7 +85,7 @@ struct CoinListView: View {
                 case .login:
                     LoginView(isLoggedIn: $isLoggedIn)
                 case .profile:
-                    ProfileView()
+                    ProfileView(isLoggedIn: $isLoggedIn)
                 case .coinDetail(let coin):
                     CoinDetialView(viewModel: CoinDetailViewModel(coin: coin))
                 }
