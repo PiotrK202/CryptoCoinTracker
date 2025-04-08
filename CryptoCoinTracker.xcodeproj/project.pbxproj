@@ -45,6 +45,7 @@
 				DataService/NetworkLayer.swift,
 				DataService/Repositories.swift,
 				Model/CoinModel.swift,
+				Model/FavoriteCoinModel.swift,
 				View/ChartSparklineIn7DView.swift,
 				View/CoinDetialView.swift,
 				View/CoinListView.swift,
