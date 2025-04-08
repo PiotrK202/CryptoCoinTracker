@@ -75,19 +75,26 @@ struct CoinListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(isLoggedIn ? "Profile" : "Login") {
-                        viewModel.path.append(isLoggedIn ? .profile : .login)
+                    Button(isLoggedIn ? "Profile" : "SignUp") {
+                        viewModel.path.append(isLoggedIn ? .profile : .signUp)
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Login") {
+                        viewModel.path.append(.login)
                     }
                 }
             }
             .navigationDestination(for:NavigationRoute.self) { route in
                 switch route {
-                case .login:
-                    LoginView(isLoggedIn: $isLoggedIn)
+                case .signUp:
+                    SignUpView(isLoggedIn: $isLoggedIn)
                 case .profile:
                     ProfileView(isLoggedIn: $isLoggedIn)
                 case .coinDetail(let coin):
                     CoinDetialView(viewModel: CoinDetailViewModel(coin: coin))
+                case .login:
+                    LoginView()
                 }
             }
         }
