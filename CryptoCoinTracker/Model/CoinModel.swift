@@ -5,18 +5,7 @@
 //  Created by piotr koscielny on 3/4/25.
 //
 
-/*
- 
- curl --request GET \
- --url 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&category=layer-1&order=market_cap_desc&per_page=200&page=1&sparkline=true&price_change_percentage=1h' \
- --header 'accept: application/json' \
- --header 'x-cg-demo-api-key: CG-yZWjZiaxGxLGNg5xzvWFGteY    '
- */
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let welcome = try? JSONDecoder().decode(Welcome.self, from: jsonData)
 
 import Foundation
 
@@ -50,7 +39,7 @@ struct CoinModel: Codable, Identifiable, Hashable {
     let lastUpdated: String?
     let sparklineIn7D: SparklineIn7D?
     let priceChangePercentage1HInCurrency: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, symbol, name, image
         case currentPrice = "current_price"

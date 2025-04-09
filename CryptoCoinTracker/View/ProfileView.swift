@@ -66,14 +66,21 @@ struct ProfileView: View {
             }
         })
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItemGroup(placement: .topBarTrailing) {
                 Button(role: .destructive) {
-//                    viewModel.deletCoins(modelContext)
+                    viewModel.deletCoin(modelContext)
+                    SessionHelper.isLoggedIn = false
                     isLoggedIn = false
                     dismiss()
                 } label: {
                     Text("Log Out")
                         .padding()
+                }
+                Button("delete profile") {
+                    KeychainHelper.shared.deletUser()
+                    viewModel.deletCoin(modelContext)
+                    isLoggedIn = false
+                    dismiss()
                 }
             }
         }

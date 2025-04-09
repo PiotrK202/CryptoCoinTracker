@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ImageDownloadErrorView: View {
-    
     var body: some View {
         VStack {
             Image(systemName: "xmark.square.fill")

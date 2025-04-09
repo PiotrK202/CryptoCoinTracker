@@ -12,9 +12,7 @@ protocol RepositoriesProtocol {
 }
 
 struct Repository: RepositoriesProtocol {
-    
     private let dataService: DataServiceProtocol
-    
     
     init(dataService: DataServiceProtocol) {
         self.dataService = dataService
@@ -27,10 +25,3 @@ struct Repository: RepositoriesProtocol {
 }
 
 
-
-/*
- func callEndpoint1(model: CoinModel) async throws -> CoinModel? {
- guard let request = DataService.returnEndpoint(endpoint: .endpoint1(model)) else { return nil }
- return try await dataService.fetchData2(from: request)
- }
- */

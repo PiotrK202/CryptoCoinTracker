@@ -9,7 +9,6 @@ import Foundation
 
 protocol DataServiceProtocol {
     func fetchData<T: Decodable>(from urlString: String) async throws -> T
-    
 }
 
 struct DataService: DataServiceProtocol {
@@ -38,42 +37,3 @@ struct DataService: DataServiceProtocol {
 }
 
 
-
-/*
- 
- func fetchCoins() async throws -> [CoinModel] {
-     let url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
-     guard let urlString = URL(string: url) else {
-         throw URLError(.badURL)
-     }
-     let (data,response) = try await URLSession.shared.data(from: urlString)
-     try httpResponse(response: response)
-     let decoder = JSONDecoder()
-     let coinsData = try decoder.decode([CoinModel].self, from: data)
-     print(coinsData.count)
-     return coinsData
- }
- 
- static func returnEndpoint(endpoint: Endpoints) -> URLRequest? {
-     guard let url = URL(string: endpoint.patch) else {
-         return nil
-     }
-     var request = URLRequest(url:url, timeoutInterval: 10)
-     request.httpMethod = endpoint.httpMethod.rawValue
-     request.httpBody = endpoint.data
-     
-     return request
- }
- 
- 
- func fetchData2<T: Decodable>(from request: URLRequest) async throws -> T {
-     let (data, response) = try await URLSession.shared.data(for: request)
-     
-     try httpResponse(response: response)
-     decoder.keyDecodingStrategy = .convertFromSnakeCase
-     
-     return try decoder.decode(T.self, from: data)
- }
-
- 
- */

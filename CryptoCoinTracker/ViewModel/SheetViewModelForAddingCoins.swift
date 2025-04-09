@@ -9,6 +9,7 @@ import Foundation
 
 @Observable
 final class SheetViewModelForAddingCoinsc {
+    
     private let coinRepository: RepositoriesProtocol
     var coins = [CoinModel]()
     
