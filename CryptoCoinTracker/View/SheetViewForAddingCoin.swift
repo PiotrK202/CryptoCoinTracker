@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SheetViewForAddingCoin: View {
+    
     @Environment(\.dismiss) private var dismiss
     @State private var viewModel: SheetViewModelForAddingCoinsc
     let onSelect: (CoinModel) -> Void

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
+    
     @Environment(\.dismiss) private var dismiss
     @State private var viewModel = SignUpViewModel()
     @State private var username = ""
@@ -42,6 +43,7 @@ struct SignUpView: View {
                     errorMessage = error.uppercased()
                 } else {
                     viewModel.saveUserData(username, email, password, birthYear)
+                    SessionHelper.isLoggedIn = true
                     isLoggedIn = true
                     errorMessage = nil
                     dismiss()

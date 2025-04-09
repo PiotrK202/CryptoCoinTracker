@@ -34,28 +34,6 @@ final class CoinListViewModel {
         }
     }
     func isUserLoggedIn() -> Bool {
-        let userName = KeychainHelper.shared.read(forKey: KeychainHelper.userName)
-        let email = KeychainHelper.shared.read(forKey: KeychainHelper.email)
-        let password = KeychainHelper.shared.read(forKey: KeychainHelper.password)
-        return !(userName?.isEmpty ?? true) && !(email?.isEmpty ?? true) && !(password?.isEmpty ?? true)
+        SessionHelper.isLoggedIn
     }
 }
-
-/*
- func fetchCoins() async throws {
-     do {
-         coins = try await coinRepository.fetchCoins()
-         print(coins.count)
-     } catch {
-         print(error.localizedDescription)
-     }
- }
- 
- 
- //    func image(for coin: CoinModel) -> URL? {
- //        let image = coin.image ?? ""
- //        guard let url = URL(string: image) else { return nil }
- //        return url
- //    }
- //
- */
