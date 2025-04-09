@@ -41,7 +41,6 @@
 				Assets.xcassets,
 				DataService/CoinDataService.swift,
 				DataService/DataServiceMock/DataServiceMock.swift,
-				DataService/DataServiceMock/NetworkLayer.swift,
 				DataService/DataServiceMock/RepositorhMock.swift,
 				DataService/Repositories.swift,
 				Model/CoinModel.swift,
