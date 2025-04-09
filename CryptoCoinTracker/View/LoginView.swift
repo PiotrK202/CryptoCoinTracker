@@ -8,35 +8,36 @@
 import SwiftUI
 
 struct LoginView: View {
+    
     @Environment(\.dismiss) private var dismiss
     @Binding var isLoggedIn: Bool
     @State private var viewModel = LoginViewModel()
     @State private var userName = ""
     @State private var password = ""
     @State private var errorMessage: String?
+    
     var body: some View {
-        NavigationStack {
-            Form {
-                Section {
-                    TextField("Username", text: $userName)
-                    
-                    SecureField("Password", text: $password)
-                    
-                    if let error = errorMessage {
-                        Text(error)
-                            .foregroundStyle(.red)
-                    }
-                }
+        Form {
+            Section {
+                TextField("Username", text: $userName)
                 
-                Section {
-                    Button("Login") {
-                        if let error = viewModel.isValidLogin(userName: userName, password: password) {
-                            errorMessage = error.uppercased()
-                        } else {
-                            errorMessage = nil
-                            isLoggedIn = true
-                            dismiss()
-                        }
+                SecureField("Password", text: $password)
+                
+                if let error = errorMessage {
+                    Text(error)
+                        .foregroundStyle(.red)
+                }
+            }
+            
+            Section {
+                Button("Login") {
+                    if let error = viewModel.isValidLogin(userName: userName, password: password) {
+                        errorMessage = error.uppercased()
+                    } else {
+                        SessionHelper.isLoggedIn = true
+                        errorMessage = nil
+                        isLoggedIn = true
+                        dismiss()
                     }
                 }
             }
