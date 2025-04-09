@@ -68,7 +68,7 @@ struct ProfileView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(role: .destructive) {
-                    viewModel.deletCoins(modelContext)
+//                    viewModel.deletCoins(modelContext)
                     isLoggedIn = false
                     dismiss()
                 } label: {
