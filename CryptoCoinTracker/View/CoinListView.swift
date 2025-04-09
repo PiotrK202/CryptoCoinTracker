@@ -15,6 +15,7 @@ struct CoinListView: View {
     @State private var showProfile = false
     @State private var showLogin = false
     @State private var searchForCoins = ""
+    @State private var showAlert = false
     
     private var filtredCoins: [CoinModel] {
         if searchForCoins.isEmpty {
@@ -64,6 +65,9 @@ struct CoinListView: View {
                     .buttonStyle(PlainButtonStyle())
                 }
             }
+//            .alert("You are alredy Loged In" ,isPresented: $showAlert) {
+//                Button("Ok",role: .cancel) { }
+//            }
             .searchable(text: $searchForCoins, prompt: "search coin")
             .onAppear {
                 Task {
@@ -80,7 +84,7 @@ struct CoinListView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Login") {
+                    Button(isLoggedIn ? "" : "Login") {
                         viewModel.path.append(.login)
                     }
                 }
@@ -94,7 +98,7 @@ struct CoinListView: View {
                 case .coinDetail(let coin):
                     CoinDetialView(viewModel: CoinDetailViewModel(coin: coin))
                 case .login:
-                    LoginView()
+                    LoginView(isLoggedIn: $isLoggedIn)
                 }
             }
         }
