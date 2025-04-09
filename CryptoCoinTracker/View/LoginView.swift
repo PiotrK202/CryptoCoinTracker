@@ -8,11 +8,42 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Binding var isLoggedIn: Bool
+    @State private var viewModel = LoginViewModel()
+    @State private var userName = ""
+    @State private var password = ""
+    @State private var errorMessage: String?
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            Form {
+                Section {
+                    TextField("Username", text: $userName)
+                    
+                    SecureField("Password", text: $password)
+                    
+                    if let error = errorMessage {
+                        Text(error)
+                            .foregroundStyle(.red)
+                    }
+                }
+                
+                Section {
+                    Button("Login") {
+                        if let error = viewModel.isValidLogin(userName: userName, password: password) {
+                            errorMessage = error.uppercased()
+                        } else {
+                            errorMessage = nil
+                            isLoggedIn = true
+                            dismiss()
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    LoginView()
+    LoginView(isLoggedIn: .constant(false))
 }
