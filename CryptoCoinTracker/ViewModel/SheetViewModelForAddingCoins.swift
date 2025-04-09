@@ -5,6 +5,9 @@
 //  Created by piotr koscielny on 8/4/25.
 //
 
+
+// zapytac sie czy lepiej jest tak czy lepiej by bylo dac temu sheet view coinlistVM
+
 import Foundation
 
 @Observable

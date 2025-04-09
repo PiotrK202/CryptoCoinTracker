@@ -14,13 +14,17 @@ final class LoginViewModel {
         if userName.isEmpty || password.isEmpty {
             return " Pleas fill all fields"
         }
-        guard let storedUserName = KeychainHelper.shared.read(forKey: KeychainHelper.userName),
-              let storedPassword = KeychainHelper.shared.read(forKey: KeychainHelper.password) else {
-            return " No Account found"
+        let storedUserName = KeychainHelper.shared.read(forKey: KeychainHelper.userName)
+        let storedPassword = KeychainHelper.shared.read(forKey: KeychainHelper.password)
+        
+        if storedPassword == nil || storedPassword == nil {
+            return "No user data found"
         }
+        
         if storedUserName != userName {
             return "Invalid username"
         }
+        
         if storedPassword != password {
             return "Incorrect password"
         }
