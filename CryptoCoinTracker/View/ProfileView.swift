@@ -70,7 +70,6 @@ struct ProfileView: View {
                 Button(role: .destructive) {
                     viewModel.deletCoin(modelContext)
                     SessionHelper.isLoggedIn = false
-                    isLoggedIn = false
                     dismiss()
                 } label: {
                     Text("Log Out")
@@ -79,7 +78,7 @@ struct ProfileView: View {
                 Button("delete profile") {
                     KeychainHelper.shared.deletUser()
                     viewModel.deletCoin(modelContext)
-                    isLoggedIn = false
+                    SessionHelper.isLoggedIn = false
                     dismiss()
                 }
             }

@@ -36,7 +36,6 @@ struct LoginView: View {
                     } else {
                         SessionHelper.isLoggedIn = true
                         errorMessage = nil
-                        isLoggedIn = true
                         dismiss()
                     }
                 }

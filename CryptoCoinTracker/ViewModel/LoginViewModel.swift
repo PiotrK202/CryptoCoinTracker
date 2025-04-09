@@ -17,10 +17,6 @@ final class LoginViewModel {
         let storedUserName = KeychainHelper.shared.read(forKey: KeychainHelper.userName)
         let storedPassword = KeychainHelper.shared.read(forKey: KeychainHelper.password)
         
-        if storedPassword == nil || storedPassword == nil {
-            return "No user data found"
-        }
-        
         if storedUserName != userName {
             return "Invalid username"
         }

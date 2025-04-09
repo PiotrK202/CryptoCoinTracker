@@ -44,7 +44,6 @@ struct SignUpView: View {
                 } else {
                     viewModel.saveUserData(username, email, password, birthYear)
                     SessionHelper.isLoggedIn = true
-                    isLoggedIn = true
                     errorMessage = nil
                     dismiss()
                 }
