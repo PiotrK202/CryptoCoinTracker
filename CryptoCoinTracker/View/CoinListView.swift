@@ -65,9 +65,6 @@ struct CoinListView: View {
                     .buttonStyle(PlainButtonStyle())
                 }
             }
-//            .alert("You are alredy Loged In" ,isPresented: $showAlert) {
-//                Button("Ok",role: .cancel) { }
-//            }
             .searchable(text: $searchForCoins, prompt: "search coin")
             .onAppear {
                 Task {
@@ -84,12 +81,14 @@ struct CoinListView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarLeading) {
-                    Button(isLoggedIn ? "" : "Login") {
-                        viewModel.path.append(.login)
+                    if !SessionHelper.isLoggedIn {
+                        Button("Login") {
+                            viewModel.path.append(.login)
+                        }
                     }
                 }
             }
-            .navigationDestination(for:NavigationRoute.self) { route in
+            .navigationDestination(for: NavigationRoute.self) { route in
                 switch route {
                 case .signUp:
                     SignUpView(isLoggedIn: $isLoggedIn)

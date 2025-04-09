@@ -10,12 +10,12 @@ import SwiftData
 
 @Observable
 final class ProfileViewModel {
-    let userName = KeychainHelper.shared.read(forKey: KeychainHelper.userName)
-    let email = KeychainHelper.shared.read(forKey: KeychainHelper.email)
-    let birthYear = KeychainHelper.shared.read(forKey: KeychainHelper.birthYear)
     
-    func deletCoins(_ modelContext: ModelContext) {
-        KeychainHelper.shared.deletUser()
+    var userName = KeychainHelper.shared.read(forKey: KeychainHelper.userName)
+    var email = KeychainHelper.shared.read(forKey: KeychainHelper.email)
+    var birthYear = KeychainHelper.shared.read(forKey: KeychainHelper.birthYear)
+    
+    func deletCoin(_ modelContext: ModelContext) {
         do {
             try modelContext.delete(model: FavoriteCoinModel.self)
         } catch {
