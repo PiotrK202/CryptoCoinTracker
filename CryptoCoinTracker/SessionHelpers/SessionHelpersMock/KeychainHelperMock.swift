@@ -8,15 +8,17 @@
 import Foundation
 
 final class KeychainHelperMock: KeychainHelperProtocole {
+    private var value: [String: String] = [:]
+    
     func save(token: String, forKey key: String) {
-        
+        value[key] = token
     }
     
     func read(forKey key: String) -> String? {
-        return nil
+        return value[key]
     }
     
     func deletUser() {
-        
+        value.removeAll()
     }
 }

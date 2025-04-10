@@ -9,17 +9,18 @@ import Testing
 @testable import CryptoCoinTracker
 
 @Suite("KeychainTests")struct KeychainHelperTests {
+    let keychain = KeychainHelperMock()
 
     @Test func saveAndLoadData() {
-        KeychainHelper.shared.save(token: "test", forKey: "testKey")
-        let savedData = KeychainHelper.shared.read(forKey: "testKey")
-        #expect(savedData == "test")
+        keychain.save(token: "1234", forKey: "password")
+        let value = keychain.read(forKey: "password")
+        #expect(value == "1234")
     }
-// dziala w aplikacji nie dziala w testach!!!
-//    @Test func deleteValue() {
-//        KeychainHelper.shared.save(token: "test2", forKey: "testKey2")
-//        KeychainHelper.shared.deletUser()
-//        let value = KeychainHelper.shared.read(forKey: "testKey2")
-//        #expect(value == nil)
-//    }
+    
+    @Test func deleteData() {
+        keychain.save(token: "1234", forKey: "password")
+        keychain.deletUser()
+        let value = keychain.read(forKey: "password")
+        #expect(value == nil)
+    }
 }

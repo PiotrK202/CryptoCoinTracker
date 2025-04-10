@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct CryptoCoinTrackerApp: App {
+
     var body: some Scene {
         WindowGroup {
             CoinListView(viewModel: CoinListViewModel(coinRepository: Repository(dataService: DataService()), sessionHelper: SessionHelper()))

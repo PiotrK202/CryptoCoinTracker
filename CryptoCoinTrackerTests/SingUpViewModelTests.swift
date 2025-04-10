@@ -9,7 +9,7 @@ import Testing
 @testable import CryptoCoinTracker
 
 @Suite("SignUpViewModelTests")struct SingUpViewModelTests {
-    let viewModel = SignUpViewModel()
+    let viewModel = SignUpViewModel(sessionHelper: SessionHelper())
     
     @Test func wrongEmailFail() {
         let result = viewModel.validateUser("user", "wrong", "1234567899", 2000)

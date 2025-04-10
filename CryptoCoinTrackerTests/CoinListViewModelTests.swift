@@ -12,7 +12,7 @@ import Testing
     
     @Test func fetchCoinsViewModelTest() async throws {
         let repostiory = Repository(dataService: DataServiceMock())
-        let viewModel = CoinListViewModel(coinRepository: repostiory)
+        let viewModel = CoinListViewModel(coinRepository: repostiory, sessionHelper: SessionHelper())
         
         try await viewModel.fetchCoin()
         

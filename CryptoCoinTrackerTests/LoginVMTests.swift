@@ -10,7 +10,7 @@ import Testing
 
 @Suite("LoginViewModelTests")struct LoginVMTests {
 
-    let viewModel = LoginViewModel()
+    let viewModel = LoginViewModel(sessionMenager: SessionHelper())
     
     @Test func emptyFieldsFail() {
         let result = viewModel.isValidLogin(userName: "", password: "")
