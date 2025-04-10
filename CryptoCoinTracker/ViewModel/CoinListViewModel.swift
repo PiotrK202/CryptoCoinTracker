@@ -18,11 +18,13 @@ enum NavigationRoute: Hashable {
 @Observable
 final class CoinListViewModel {
     private let coinRepository: RepositoriesProtocol
+    private let sessionHelper: SessionHelperProtocole
     var coins = [CoinModel]()
     var path: [NavigationRoute] = []
     
-    init(coinRepository: RepositoriesProtocol) {
+    init(coinRepository: RepositoriesProtocol, sessionHelper: SessionHelperProtocole) {
         self.coinRepository = coinRepository
+        self.sessionHelper = sessionHelper
     }
     
     func fetchCoin() async throws {
@@ -34,6 +36,6 @@ final class CoinListViewModel {
         }
     }
     func isUserLoggedIn() -> Bool {
-        SessionHelper.isLoggedIn
+        sessionHelper.isLoggedIn
     }
 }

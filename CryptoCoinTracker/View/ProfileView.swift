@@ -14,11 +14,15 @@ struct ProfileView: View {
     
     @Query private var favoriteCoins: [FavoriteCoinModel]
     
-    @State private var viewModel = ProfileViewModel()
+    @State private var viewModel: ProfileViewModel
     @State private var isShowingSheet = false
     @Binding var isLoggedIn: Bool
-    
     private let noAvailableText = "Not available"
+    
+    init(viewModel: ProfileViewModel, isLoggedIn: Binding<Bool>) {
+        _isLoggedIn = isLoggedIn
+        _viewModel = State(wrappedValue: viewModel)
+    }
     
     var body: some View {
         Form {
@@ -69,7 +73,7 @@ struct ProfileView: View {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button(role: .destructive) {
                     viewModel.deletCoin(modelContext)
-                    SessionHelper.isLoggedIn = false
+                    viewModel.loggOut()
                     dismiss()
                 } label: {
                     Text("Log Out")
@@ -78,7 +82,7 @@ struct ProfileView: View {
                 Button("delete profile") {
                     KeychainHelper.shared.deletUser()
                     viewModel.deletCoin(modelContext)
-                    SessionHelper.isLoggedIn = false
+                    viewModel.loggOut()
                     dismiss()
                 }
             }
@@ -87,5 +91,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView(isLoggedIn: .constant(true))
+    ProfileView(viewModel: ProfileViewModel(sessionHelper: SessionHelper()), isLoggedIn: .constant(true))
 }

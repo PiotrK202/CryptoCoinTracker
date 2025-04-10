@@ -66,6 +66,7 @@ struct CoinListView: View {
                 }
             }
             .searchable(text: $searchForCoins, prompt: "search coin")
+            .accessibilityIdentifier("SearchBar")
             .onAppear {
                 Task {
                     try await viewModel.fetchCoin()
@@ -81,7 +82,7 @@ struct CoinListView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarLeading) {
-                    if !SessionHelper.isLoggedIn {
+                    if !isLoggedIn {
                         Button("Login") {
                             viewModel.path.append(.login)
                         }
@@ -91,13 +92,13 @@ struct CoinListView: View {
             .navigationDestination(for: NavigationRoute.self) { route in
                 switch route {
                 case .signUp:
-                    SignUpView(isLoggedIn: $isLoggedIn)
+                    SignUpView(viewModel: SignUpViewModel(sessionHelper: SessionHelper()), isLoggedIn: $isLoggedIn)
                 case .profile:
-                    ProfileView(isLoggedIn: $isLoggedIn)
+                    ProfileView(viewModel: ProfileViewModel(sessionHelper: SessionHelper()), isLoggedIn: $isLoggedIn)
                 case .coinDetail(let coin):
                     CoinDetialView(viewModel: CoinDetailViewModel(coin: coin))
                 case .login:
-                    LoginView(isLoggedIn: $isLoggedIn)
+                    LoginView(viewModel: LoginViewModel(sessionMenager: SessionHelper()), isLoggedIn: $isLoggedIn)
                 }
             }
         }
@@ -105,6 +106,6 @@ struct CoinListView: View {
 }
 
 #Preview {
-    CoinListView(viewModel: CoinListViewModel(coinRepository: Repository(dataService: DataService())))
+    CoinListView(viewModel: CoinListViewModel(coinRepository: Repository(dataService: DataService()), sessionHelper: SessionHelper()))
 }
 

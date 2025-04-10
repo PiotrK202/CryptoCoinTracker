@@ -11,17 +11,24 @@ struct LoginView: View {
     
     @Environment(\.dismiss) private var dismiss
     @Binding var isLoggedIn: Bool
-    @State private var viewModel = LoginViewModel()
+    @State private var viewModel: LoginViewModel
     @State private var userName = ""
     @State private var password = ""
     @State private var errorMessage: String?
+    
+    init(viewModel: LoginViewModel, isLoggedIn: Binding<Bool>) {
+        _isLoggedIn = isLoggedIn
+        _viewModel = State(wrappedValue: viewModel)
+    }
     
     var body: some View {
         Form {
             Section {
                 TextField("Username", text: $userName)
+                    .accessibilityIdentifier("LoginUserName")
                 
                 SecureField("Password", text: $password)
+                    .accessibilityIdentifier("LoginPassword")
                 
                 if let error = errorMessage {
                     Text(error)
@@ -34,16 +41,17 @@ struct LoginView: View {
                     if let error = viewModel.isValidLogin(userName: userName, password: password) {
                         errorMessage = error.uppercased()
                     } else {
-                        SessionHelper.isLoggedIn = true
+                        viewModel.isLoggedIn()
                         errorMessage = nil
                         dismiss()
                     }
                 }
+                .accessibilityIdentifier("LoginButton")
             }
         }
     }
 }
 
 #Preview {
-    LoginView(isLoggedIn: .constant(false))
+    LoginView(viewModel: LoginViewModel(sessionMenager: SessionHelper()), isLoggedIn: .constant(false))
 }

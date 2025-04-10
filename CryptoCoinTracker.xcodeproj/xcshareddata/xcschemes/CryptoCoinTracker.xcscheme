@@ -57,7 +57,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DF2965472D9EAC5600B52AA0"
+               BlueprintIdentifier = "DF6894362DA7A851006D3DF2"
                BuildableName = "CryptoCoinTrackerUITests.xctest"
                BlueprintName = "CryptoCoinTrackerUITests"
                ReferencedContainer = "container:CryptoCoinTracker.xcodeproj">
@@ -82,6 +82,17 @@
                BlueprintIdentifier = "DF1473C42DA3B3910020F199"
                BuildableName = "CoinListViewModelTests.xctest"
                BlueprintName = "CoinListViewModelTests"
+               ReferencedContainer = "container:CryptoCoinTracker.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DF6894472DA7AD04006D3DF2"
+               BuildableName = "CryptoCoinTrackerUITest.xctest"
+               BlueprintName = "CryptoCoinTrackerUITest"
                ReferencedContainer = "container:CryptoCoinTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>

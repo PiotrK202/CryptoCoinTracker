@@ -8,7 +8,14 @@
 import Foundation
 import Security
 
-final class KeychainHelper {
+protocol KeychainHelperProtocole {
+    func save(token: String, forKey key: String)
+    func read(forKey key: String) -> String?
+    func deletUser()
+}
+
+final class KeychainHelper: KeychainHelperProtocole {
+ 
     static let shared = KeychainHelper()
     static let userName = "userName"
     static let email = "email"

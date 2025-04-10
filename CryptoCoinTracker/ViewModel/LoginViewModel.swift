@@ -9,6 +9,15 @@ import Foundation
 
 @Observable
 final class LoginViewModel {
+    private var sessionMenager: SessionHelperProtocole
+    
+    init(sessionMenager: SessionHelperProtocole) {
+        self.sessionMenager = sessionMenager
+    }
+    
+    func isLoggedIn() {
+        sessionMenager.isLoggedIn = true
+    }
     
     func isValidLogin(userName: String, password: String) -> String? {
         if userName.isEmpty || password.isEmpty {

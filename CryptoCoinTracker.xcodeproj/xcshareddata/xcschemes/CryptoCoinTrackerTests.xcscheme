@@ -50,6 +50,17 @@
                ReferencedContainer = "container:CryptoCoinTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DF6894472DA7AD04006D3DF2"
+               BuildableName = "CryptoCoinTrackerUITest.xctest"
+               BlueprintName = "CryptoCoinTrackerUITest"
+               ReferencedContainer = "container:CryptoCoinTracker.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

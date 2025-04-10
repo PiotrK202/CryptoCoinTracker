@@ -6,12 +6,18 @@
 //
 
 import Foundation
-
-struct SessionHelper {
-    static let isLoggedInKey = "isLoggedIn"
+protocol SessionHelperProtocole {
+    var isLoggedIn: Bool {get set}
     
-    static var isLoggedIn: Bool {
-        get { UserDefaults.standard.bool(forKey: isLoggedInKey) }
-        set { UserDefaults.standard.set(newValue, forKey: isLoggedInKey) }
+}
+
+struct SessionHelper: SessionHelperProtocole {    
+    private static let isLoggedInKey = "isLoggedIn"
+    
+        var isLoggedIn: Bool {
+            get { UserDefaults.standard.bool(forKey: SessionHelper.isLoggedInKey) }
+            set { UserDefaults.standard.set(newValue, forKey: SessionHelper.isLoggedInKey) }
     }
 }
+
+
